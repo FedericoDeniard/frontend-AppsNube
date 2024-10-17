@@ -1,0 +1,17 @@
+.mainPage {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  height: 100%;
+}
+
+.product-container {
+  display: flex;
+  height: fit-content;
+  padding: 10px 20px;
+  gap: 10px;
+}
