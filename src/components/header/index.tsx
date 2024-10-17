@@ -34,6 +34,7 @@ export const Header = ({
         />
         <button type="submit" className="search-button" />
       </form>
+      <button className="cart-button" />
     </header>
   );
 };

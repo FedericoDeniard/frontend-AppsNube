@@ -17,8 +17,7 @@ export type Product = {
 };
 
 export const ProductCard = ({ product }: { product: Product }) => {
-  const { name, img_url, brand, description, price } = product;
-  // console.log(product);
+  const { name, img_url, brand, price } = product;
   return (
     <div className="product-card">
       <div className="product-card__image-container">
@@ -33,7 +32,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
         </figure>
       </div>
       <div className="product-card__info">
-        <h2 className="product-card__name">{`${name} - ${description}`}</h2>
+        <h2 className="product-card__name">{`${name}`}</h2>
         <h2 className="product-card__price">{`$${price}`}</h2>
       </div>
     </div>

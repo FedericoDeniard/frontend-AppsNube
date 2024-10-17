@@ -1,6 +1,6 @@
 .header {
   height: fit-content;
-  padding: 5px;
+  padding: 5px 25px;
   background-color: #d1c9cf;
   display: flex;
   align-items: center;
@@ -51,12 +51,30 @@
   background-position: center;
   border: none;
   border-radius: 99999px;
-  margin-right: 50px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
 }
 
 .search-button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  outline: 1px solid rgba(162, 145, 158, 1);
+}
+
+.cart-button {
+  aspect-ratio: 1/1;
+  width: 40px;
+  background-image: url(../../assets/images/cart.svg);
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  border-radius: 99999px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.cart-button:hover {
   cursor: pointer;
   transform: scale(1.1);
   outline: 1px solid rgba(162, 145, 158, 1);

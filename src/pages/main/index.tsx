@@ -25,7 +25,6 @@ export const MainPage = () => {
       filterQuery: query.filterQuery,
     };
 
-    // Combinar las consultas de búsqueda y filtros
     const combinedQuery =
       finalQuery.searchQuery || finalQuery.filterQuery
         ? `?${finalQuery.searchQuery}${
@@ -44,7 +43,6 @@ export const MainPage = () => {
       filterQuery: filterQuery,
     };
 
-    // Combinar las consultas de búsqueda y filtros
     const combinedQuery =
       finalQuery.searchQuery || finalQuery.filterQuery
         ? `?${finalQuery.searchQuery}${
