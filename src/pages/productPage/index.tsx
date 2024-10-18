@@ -60,7 +60,7 @@ export const ProductPage = ({ id, brand, model }: UniqueProduct) => {
                   .filter((otherProduct) => otherProduct.id !== id)
                   .map((product) => (
                     <ProductCard
-                      key={`${product.id}${product.brand.id}`}
+                      key={`${product.id}${product.brand.id}${product.model}`}
                       product={product}
                     />
                   ))

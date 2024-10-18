@@ -38,7 +38,7 @@ export const QueryProvider = ({ children }: { children: ReactNode }) => {
     const queries: string[] = [];
 
     if (searchQuery) {
-      queries.push(`name=${searchQuery}`);
+      queries.push(`description=${searchQuery}`);
     }
 
     if (filterQuery) {

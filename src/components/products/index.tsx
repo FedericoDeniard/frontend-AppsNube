@@ -1,6 +1,8 @@
 import "./index.css";
 import defaultImage from "../../assets/images/default.jpg";
 
+import { useNavigate } from "react-router-dom";
+
 export type Product = {
   id: number;
   name: string;
@@ -18,9 +20,16 @@ export type Product = {
 };
 
 export const ProductCard = ({ product }: { product: Product }) => {
+  const navigate = useNavigate();
+
   const { name, img_url, brand, price } = product;
   return (
-    <div className="product-card" onClick={() => {}}>
+    <div
+      className="product-card"
+      onClick={() =>
+        navigate(`/products/${product.id}/${brand.name}/${product.model}`)
+      }
+    >
       <div className="product-card__image-container">
         <img
           className="product-card__image"
