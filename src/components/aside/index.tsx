@@ -12,13 +12,12 @@ export const Aside = ({ onQueryChange }: AsideProps) => {
   const handleCheckboxChange = (brand: string) => {
     setCheckedBrands((prev) => {
       const updatedBrands = prev.includes(brand)
-        ? prev.filter((b) => b !== brand) // Si ya está seleccionado, lo eliminamos
-        : [...prev, brand]; // Si no está seleccionado, lo agregamos
+        ? prev.filter((b) => b !== brand)
+        : [...prev, brand];
 
-      // Construir la consulta
       const updatedQuery = updatedBrands.length
         ? `?brand=${updatedBrands.join(",")}`
-        : ""; // Si no hay marcas, se elimina ?brand=
+        : "";
 
       onQueryChange(updatedQuery);
       return updatedBrands;

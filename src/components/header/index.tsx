@@ -21,7 +21,7 @@ export const Header = ({
   return (
     <header className="header">
       <div className="logo-container" onClick={resetSearchTerm}>
-        <img src="logo.svg" alt="logo" className="logo" />
+        <img src="/logo.svg" alt="logo" className="logo" />
         <h1>Tienda Vite</h1>
       </div>
       <form className="search-form" onSubmit={handleSubmit}>

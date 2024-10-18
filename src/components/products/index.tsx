@@ -9,6 +9,7 @@ export type Product = {
   img_url: string;
   price: number;
   description: string;
+  model: string;
   brand: {
     id: number;
     name: string;
@@ -19,7 +20,7 @@ export type Product = {
 export const ProductCard = ({ product }: { product: Product }) => {
   const { name, img_url, brand, price } = product;
   return (
-    <div className="product-card">
+    <div className="product-card" onClick={() => {}}>
       <div className="product-card__image-container">
         <img
           className="product-card__image"
@@ -32,7 +33,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
         </figure>
       </div>
       <div className="product-card__info">
-        <h2 className="product-card__name">{`${name}`}</h2>
+        <h2 className="product-card__name">`${name}`</h2>
         <h2 className="product-card__price">{`$${price}`}</h2>
       </div>
     </div>
