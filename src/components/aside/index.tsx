@@ -1,27 +1,60 @@
-import { useState } from "react";
+import { useState, forwardRef, useImperativeHandle } from "react";
 import "./index.css";
 
 type AsideProps = {
   onQueryChange: (query: string) => void;
 };
 
-export const Aside = ({ onQueryChange }: AsideProps) => {
+export const Aside = forwardRef(({ onQueryChange }: AsideProps, ref) => {
   const brands = ["Nike", "Adidas", "Fila", "Lacoste", "Ralph Lauren"];
+  const products = ["Remera", "Pantalon", "Zapatilla", "Sweater"];
   const [checkedBrands, setCheckedBrands] = useState<string[]>([]);
+  const [checkedProducts, setCheckedProducts] = useState<string[]>([]);
 
-  const handleCheckboxChange = (brand: string) => {
-    setCheckedBrands((prev) => {
-      const updatedBrands = prev.includes(brand)
-        ? prev.filter((b) => b !== brand)
-        : [...prev, brand];
+  useImperativeHandle(ref, () => ({
+    reset: () => {
+      setCheckedBrands([]);
+      setCheckedProducts([]);
+      onQueryChange("");
+    },
+  }));
 
-      const updatedQuery = updatedBrands.length
-        ? `brand=${updatedBrands.join(",")}`
-        : "";
+  const handleCheckboxChange = (type: "brand" | "product", value: string) => {
+    if (type === "brand") {
+      setCheckedBrands((prev) => {
+        const updatedBrands = prev.includes(value)
+          ? prev.filter((b) => b !== value)
+          : [...prev, value];
 
-      onQueryChange(updatedQuery);
-      return updatedBrands;
-    });
+        const updatedQuery = getCombinedQuery(updatedBrands, checkedProducts);
+        onQueryChange(updatedQuery);
+        return updatedBrands;
+      });
+    } else if (type === "product") {
+      setCheckedProducts((prev) => {
+        const updatedProducts = prev.includes(value)
+          ? prev.filter((p) => p !== value)
+          : [...prev, value];
+
+        const updatedQuery = getCombinedQuery(checkedBrands, updatedProducts);
+        onQueryChange(updatedQuery);
+        return updatedProducts;
+      });
+    }
+  };
+
+  const getCombinedQuery = (brands: string[], products: string[]) => {
+    const queries: string[] = [];
+
+    if (brands.length) {
+      queries.push(`brand=${brands.join(",")}`);
+    }
+
+    if (products.length) {
+      queries.push(`name=${products.join(",")}`);
+    }
+
+    return queries.length ? `${queries.join("&")}` : "";
   };
 
   return (
@@ -33,13 +66,26 @@ export const Aside = ({ onQueryChange }: AsideProps) => {
             <input
               type="checkbox"
               checked={checkedBrands.includes(brand)}
-              onChange={() => handleCheckboxChange(brand)}
+              onChange={() => handleCheckboxChange("brand", brand)}
             />
             <span className="checkmark" />
             {brand}
           </label>
         ))}
+
+        <h3>Productos</h3>
+        {products.map((product) => (
+          <label className="custom-checkbox" key={product}>
+            <input
+              type="checkbox"
+              checked={checkedProducts.includes(product)}
+              onChange={() => handleCheckboxChange("product", product)}
+            />
+            <span className="checkmark" />
+            {product}
+          </label>
+        ))}
       </div>
     </aside>
   );
-};
+});

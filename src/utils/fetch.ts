@@ -18,7 +18,6 @@ export const fetchAllProducts = async () => {
 
 export const fetchFilteredProducts = async (query?: string) => {
   const url = `${import.meta.env.VITE_API_URL}/products/filter${query}`;
-  console.log(url);
   const response = await fetch(url, {
     method: "GET",
     headers: {
