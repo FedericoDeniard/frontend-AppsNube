@@ -32,13 +32,13 @@ export const Aside = forwardRef(({ onQueryChange }: AsideProps, ref) => {
       });
     } else if (type === "product") {
       setCheckedProducts((prev) => {
-        const updatedProducts = prev.includes(value)
-          ? prev.filter((p) => p !== value)
-          : [...prev, value];
-
-        const updatedQuery = getCombinedQuery(checkedBrands, updatedProducts);
-        onQueryChange(updatedQuery);
-        return updatedProducts;
+        if (prev.includes(value)) {
+          onQueryChange("");
+          return [];
+        } else {
+          onQueryChange(getCombinedQuery(checkedBrands, [value]));
+          return [value];
+        }
       });
     }
   };
