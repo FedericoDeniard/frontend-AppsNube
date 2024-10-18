@@ -2,7 +2,7 @@ import { Header } from "../../components/header";
 import { ProductCard } from "../../components/products";
 import { Product } from "../../components/products";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./index.css";
 import { Aside } from "../../components/aside";
 import { fetchAllProducts, fetchFilteredProducts } from "../../utils/fetch";
@@ -12,6 +12,13 @@ export const MainPage = () => {
   const { combinedQuery, handleSearch, handleSearchFilters } =
     useQueryContext();
   const [products, setProducts] = useState<Product[]>([]);
+  const asideRef = useRef<any>(null);
+
+  const resetFilters = () => {
+    if (asideRef.current) {
+      asideRef.current.reset();
+    }
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -33,9 +40,9 @@ export const MainPage = () => {
 
   return (
     <div className="mainPage">
-      <Header onSearch={handleSearch} />
+      <Header onSearch={handleSearch} resetFilters={resetFilters} />
       <div className="container">
-        <Aside onQueryChange={handleSearchFilters} />
+        <Aside ref={asideRef} onQueryChange={handleSearchFilters} />
         <div className="product-container">
           {products.length > 0
             ? products.map((product) => (
