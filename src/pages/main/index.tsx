@@ -6,67 +6,30 @@ import { useEffect, useState } from "react";
 import "./index.css";
 import { Aside } from "../../components/aside";
 import { fetchAllProducts, fetchFilteredProducts } from "../../utils/fetch";
+import { useQueryContext } from "../../utils/context";
 
 export const MainPage = () => {
+  const { combinedQuery, handleSearch, handleSearchFilters } =
+    useQueryContext();
   const [products, setProducts] = useState<Product[]>([]);
-  const [query, setQuery] = useState<{
-    searchQuery: string;
-    filterQuery: string;
-  }>({
-    searchQuery: "",
-    filterQuery: "",
-  });
-
-  const handleSearch = async (searchQuery: string) => {
-    const updatedSearchQuery = searchQuery ? `name=${searchQuery}` : "";
-
-    const finalQuery = {
-      searchQuery: updatedSearchQuery,
-      filterQuery: query.filterQuery,
-    };
-
-    const combinedQuery =
-      finalQuery.searchQuery || finalQuery.filterQuery
-        ? `?${finalQuery.searchQuery}${
-            finalQuery.filterQuery ? `&${finalQuery.filterQuery.slice(1)}` : ""
-          }`
-        : "";
-
-    setQuery(finalQuery);
-    const filteredProducts = await fetchFilteredProducts(combinedQuery);
-    setProducts(filteredProducts);
-  };
-
-  const handleSearchFilters = async (filterQuery: string) => {
-    const finalQuery = {
-      searchQuery: query.searchQuery,
-      filterQuery: filterQuery,
-    };
-
-    const combinedQuery =
-      finalQuery.searchQuery || finalQuery.filterQuery
-        ? `?${finalQuery.searchQuery}${
-            finalQuery.filterQuery ? `&${finalQuery.filterQuery.slice(1)}` : ""
-          }`
-        : "";
-
-    setQuery(finalQuery);
-    const filteredProducts = await fetchFilteredProducts(combinedQuery);
-    setProducts(filteredProducts);
-  };
 
   useEffect(() => {
-    const loadProducts = async () => {
+    const fetchProducts = async () => {
       try {
-        const fetchedProducts = await fetchAllProducts();
-        setProducts(fetchedProducts);
+        if (combinedQuery) {
+          const filteredProducts = await fetchFilteredProducts(combinedQuery);
+          setProducts(filteredProducts);
+        } else {
+          const fetchedProducts = await fetchAllProducts();
+          setProducts(fetchedProducts);
+        }
       } catch (error) {
         console.error("Error fetching products:", error);
       }
     };
 
-    loadProducts();
-  }, []);
+    fetchProducts();
+  }, [combinedQuery]);
 
   return (
     <div className="mainPage">
@@ -77,7 +40,7 @@ export const MainPage = () => {
           {products.length > 0
             ? products.map((product) => (
                 <ProductCard
-                  key={`${product.id}${product.brand.id}`}
+                  key={`${product.id}${product.brand.id}${product.model}`}
                   product={product}
                 />
               ))

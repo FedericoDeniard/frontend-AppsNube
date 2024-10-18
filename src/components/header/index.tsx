@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./index.css";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export const Header = ({
   onSearch,
@@ -7,15 +9,21 @@ export const Header = ({
   onSearch: (searchTerm: string) => void;
 }) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (location.pathname !== "/") {
+      navigate("/");
+    }
     onSearch(searchTerm);
   };
 
   const resetSearchTerm = () => {
     setSearchTerm("");
     onSearch("");
+    navigate("/");
   };
 
   return (

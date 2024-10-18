@@ -5,6 +5,7 @@
   gap: 20px;
   height: 100%;
   max-height: 100%;
+  padding: 5px 0px;
 }
 
 .product__image-container {
@@ -15,7 +16,6 @@
 
 .product__image {
   width: 100%;
-
   object-fit: contain;
 }
 
@@ -69,6 +69,7 @@
   border: 1px solid #000;
   transition: all 0.3s ease;
   font-size: 20px;
+  box-shadow: 2px 2px 5px rgba(162, 145, 158, 1);
 }
 
 .product__button:hover {

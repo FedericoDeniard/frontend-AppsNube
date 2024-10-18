@@ -16,7 +16,7 @@ export const Aside = ({ onQueryChange }: AsideProps) => {
         : [...prev, brand];
 
       const updatedQuery = updatedBrands.length
-        ? `?brand=${updatedBrands.join(",")}`
+        ? `brand=${updatedBrands.join(",")}`
         : "";
 
       onQueryChange(updatedQuery);

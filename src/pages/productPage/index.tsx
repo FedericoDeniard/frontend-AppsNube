@@ -3,6 +3,7 @@ import { Header } from "../../components/header";
 import { useEffect, useState } from "react";
 import { Product, ProductCard } from "../../components/products";
 import { fetchFilteredProducts, fetchProduct } from "../../utils/fetch";
+import { useQueryContext } from "../../utils/context";
 
 export type UniqueProduct = {
   id: number;
@@ -13,6 +14,7 @@ export type UniqueProduct = {
 export const ProductPage = ({ id, brand, model }: UniqueProduct) => {
   const [product, setProduct] = useState<Product | null>(null);
   const [brandProducts, setBrandProducts] = useState<Product[] | null>(null);
+  const { handleSearch } = useQueryContext();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -31,7 +33,7 @@ export const ProductPage = ({ id, brand, model }: UniqueProduct) => {
 
   return (
     <div className="mainPage">
-      <Header onSearch={() => {}} />
+      <Header onSearch={handleSearch} />
       <div className="product">
         <figure className="product__image-container">
           <img
