@@ -52,7 +52,7 @@ export const ProductPage = ({ id, brand, model }: UniqueProduct) => {
           <h3 className="product__description">{`${product?.description} - $${product?.price}`}</h3>
           <button className="product__button">Comprar</button>
           <p>También te podría interesar</p>
-          <div className="product-container">
+          <div className="one-product-container">
             {brandProducts
               ? brandProducts
                   .filter((otherProduct) => otherProduct.id !== id)
