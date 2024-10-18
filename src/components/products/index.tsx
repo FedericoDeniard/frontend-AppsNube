@@ -33,7 +33,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
         </figure>
       </div>
       <div className="product-card__info">
-        <h2 className="product-card__name">`${name}`</h2>
+        <h2 className="product-card__name">{`${name}`}</h2>
         <h2 className="product-card__price">{`$${price}`}</h2>
       </div>
     </div>
