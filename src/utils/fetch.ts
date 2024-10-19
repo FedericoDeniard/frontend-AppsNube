@@ -18,6 +18,7 @@ export const fetchAllProducts = async () => {
 
 export const fetchFilteredProducts = async (query?: string) => {
   const url = `${import.meta.env.VITE_API_URL}/products/filter${query}`;
+  console.log(url);
   const response = await fetch(url, {
     method: "GET",
     headers: {
@@ -112,6 +113,39 @@ export const removeProduct = async ({
 
   if (!response.ok) {
     throw new Error("Failed to remove product");
+  }
+  const data = await response.json();
+  return { data };
+};
+
+export type ModifyProduct = {
+  id: number;
+  brand_id: number;
+  model: string;
+  img_url: string;
+  price: number;
+  description: string;
+};
+
+export const modifyProduct = async ({
+  originalProduct,
+  modifiedProduct,
+}: {
+  originalProduct: ModifyProduct;
+  modifiedProduct: ModifyProduct;
+}) => {
+  const url = `${import.meta.env.VITE_API_URL}/modifyProduct`;
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({ originalProduct, modifiedProduct }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to modify product");
   }
   const data = await response.json();
   return { data };

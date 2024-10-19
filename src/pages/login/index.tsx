@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Header } from "../../components/header";
 import { useQueryContext } from "../../utils/context";
 import { login } from "../../utils/fetch";
@@ -19,12 +20,14 @@ export const LoginPage = () => {
     formState: { errors },
   } = useForm<FormData>();
 
+  const navigate = useNavigate();
+
   const onSubmit = async (data: FormData) => {
-    console.log(data);
     await login({
       username: data.username,
       password: data.password,
     });
+    navigate("/");
   };
 
   return (

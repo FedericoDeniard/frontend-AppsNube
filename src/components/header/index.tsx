@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./index.css";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
@@ -15,7 +15,11 @@ export const Header = ({
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { setQuery, logged } = useQueryContext();
+  const { setQuery, logged, checkLogged } = useQueryContext();
+
+  useEffect(() => {
+    checkLogged();
+  }, [logged]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,9 +54,21 @@ export const Header = ({
       </form>
       <button className="cart-button" />
       {!logged ? (
-        <button className="profile-button" onClick={() => navigate("/login")} />
+        <button
+          className="profile-button"
+          onClick={async () => {
+            await checkLogged();
+            navigate("/login");
+          }}
+        />
       ) : (
-        <button className="profile-button" onClick={() => navigate("/edit")} />
+        <button
+          className="profile-button"
+          onClick={async () => {
+            await checkLogged();
+            navigate("/edit");
+          }}
+        />
       )}
     </header>
   );

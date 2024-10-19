@@ -36,7 +36,6 @@ export const MainPage = () => {
     };
 
     fetchProducts();
-    console.log(products);
   }, [combinedQuery]);
 
   return (

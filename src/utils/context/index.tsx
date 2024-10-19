@@ -58,10 +58,6 @@ export const QueryProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     checkLogged();
-  }, []);
-
-  useEffect(() => {
-    console.log(logged);
   }, [logged]);
 
   const getCombinedQuery = (searchQuery: string, filterQuery: string) => {
@@ -97,6 +93,10 @@ export const QueryProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const combinedQuery = getCombinedQuery(query.searchQuery, query.filterQuery);
+
+  useEffect(() => {
+    console.log(combinedQuery);
+  }, [combinedQuery]);
 
   return (
     <QueryContext.Provider

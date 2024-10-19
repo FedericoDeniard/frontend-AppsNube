@@ -66,6 +66,7 @@
   justify-content: space-between;
   padding: 10px;
   gap: 5px;
+  position: relative;
 }
 
 .product-card__name {
@@ -96,4 +97,45 @@
 .product-card__brand > figcaption {
   color: #000;
   font-weight: 500;
+}
+
+.product-card__undo {
+  position: absolute;
+  right: 5px;
+  bottom: -15px;
+  width: 20px;
+  height: 20px;
+  border-radius: 9999999px;
+  display: flex;
+  justify-content: center;
+  transition: all 0.3s ease;
+  background-image: url(../../assets/images/undo.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.product-card__undo:hover {
+  transform: scale(1.2);
+}
+
+.product-card__save {
+  position: absolute;
+  left: 5px;
+  bottom: -15px;
+  width: 20px;
+  height: 20px;
+  border-radius: 9999999px;
+  display: flex;
+  justify-content: center;
+  transition: all 0.3s ease;
+  background-image: url(../../assets/images/save.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 70%;
+}
+
+.product-card__save:hover {
+  transform: scale(1.2);
 }

@@ -45,7 +45,7 @@ export const EditProducts = () => {
             {products.length > 0
               ? products.map((product) => (
                   <ProductCardEditable
-                    onRemove={async () => await fetchProducts()}
+                    onChange={async () => await fetchProducts()}
                     key={`${product.id}${product.brand.id}${product.model}`}
                     product={product}
                   />
