@@ -9,13 +9,13 @@ export const Header = ({
   resetFilters,
 }: {
   onSearch: (searchTerm: string) => void;
-  resetFilters: () => void;
+  resetFilters?: () => void;
 }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { setQuery } = useQueryContext();
+  const { setQuery, logged } = useQueryContext();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,6 +49,11 @@ export const Header = ({
         <button type="submit" className="search-button" />
       </form>
       <button className="cart-button" />
+      {!logged ? (
+        <button className="profile-button" onClick={() => navigate("/login")} />
+      ) : (
+        <button className="profile-button" onClick={() => navigate("/edit")} />
+      )}
     </header>
   );
 };

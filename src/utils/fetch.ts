@@ -49,3 +49,70 @@ export const fetchProduct = async (product: UniqueProduct) => {
 
   return response.json();
 };
+
+export const login = async ({
+  username,
+  password,
+}: {
+  username: string;
+  password: string;
+}) => {
+  const url = `${import.meta.env.VITE_API_URL}/login`;
+
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username,
+      password,
+    }),
+    credentials: "include",
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to login");
+  }
+
+  return response.json();
+};
+
+export const checkLogin = async () => {
+  const url = `${import.meta.env.VITE_API_URL}/checkToken`;
+  const response = await fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  });
+  const data = await response.json();
+  return { isLogged: response.ok, data };
+};
+
+export const removeProduct = async ({
+  id,
+  brand_id,
+  model,
+}: {
+  id: number;
+  brand_id: number;
+  model: string;
+}) => {
+  const url = `${import.meta.env.VITE_API_URL}/removeProduct`;
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({ id, brand_id, model }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to remove product");
+  }
+  const data = await response.json();
+  return { data };
+};

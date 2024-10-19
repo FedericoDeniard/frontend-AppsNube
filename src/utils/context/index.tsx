@@ -1,4 +1,11 @@
-import { useContext, createContext, useState, ReactNode } from "react";
+import {
+  useContext,
+  createContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
+import { checkLogin } from "../fetch";
 
 type QueryType = {
   searchQuery: string;
@@ -11,6 +18,8 @@ type QueryContextProp = {
   handleSearch: (searchQuery: string) => Promise<void>;
   handleSearchFilters: (filterQuery: string) => Promise<void>;
   combinedQuery: string;
+  logged: boolean;
+  checkLogged: () => Promise<void>;
 };
 
 const defaultValue: QueryContextProp = {
@@ -19,6 +28,8 @@ const defaultValue: QueryContextProp = {
   handleSearch: async () => {},
   handleSearchFilters: async () => {},
   combinedQuery: "",
+  logged: false,
+  checkLogged: async () => {},
 };
 
 const QueryContext = createContext<QueryContextProp>(defaultValue);
@@ -33,6 +44,25 @@ export const QueryProvider = ({ children }: { children: ReactNode }) => {
     searchQuery: "",
     filterQuery: "",
   });
+
+  const [logged, setLogged] = useState<boolean>(defaultValue.logged);
+
+  const checkLogged = async () => {
+    try {
+      let result = await checkLogin();
+      setLogged(result.isLogged);
+    } catch (e) {
+      setLogged(false);
+    }
+  };
+
+  useEffect(() => {
+    checkLogged();
+  }, []);
+
+  useEffect(() => {
+    console.log(logged);
+  }, [logged]);
 
   const getCombinedQuery = (searchQuery: string, filterQuery: string) => {
     const queries: string[] = [];
@@ -76,6 +106,8 @@ export const QueryProvider = ({ children }: { children: ReactNode }) => {
         handleSearch,
         handleSearchFilters,
         combinedQuery,
+        logged,
+        checkLogged,
       }}
     >
       {children}
