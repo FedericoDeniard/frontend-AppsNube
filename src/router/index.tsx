@@ -4,6 +4,7 @@ import { ProductPage } from "../pages/productPage";
 import { useParams } from "react-router-dom";
 import { LoginPage } from "../pages/login";
 import { EditProducts } from "../pages/editProducts";
+import { PrivateRoute } from "../utils/privateRoute";
 
 const ProductPageWrapper = () => {
   const { id, brand, model } = useParams();
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/edit",
-    element: <EditProducts />,
+    element: <PrivateRoute element={<EditProducts />} />,
   },
 ]);
 
