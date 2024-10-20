@@ -45,7 +45,11 @@ export const Header = ({
           resetFilters;
         }}
       >
-        <img src="/logo.svg" alt="logo" className="logo" />
+        <img
+          src={`/${import.meta.env.VITE_BASE_URL}/logo.svg`}
+          alt="logo"
+          className="logo"
+        />
         <h1>Tienda Vite</h1>
       </div>
       <form className="search-form" onSubmit={handleSubmit}>
