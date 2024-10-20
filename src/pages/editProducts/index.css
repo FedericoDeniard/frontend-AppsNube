@@ -1,0 +1,29 @@
+.admin-header {
+  padding: 10px 10px;
+}
+
+.create {
+  margin: 15px 0px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.product-form {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.product-form input {
+  height: 30px;
+  border: 1px solid #000;
+  border-radius: 4px;
+  padding: 5px;
+  font-size: 20px;
+}
+
+.brand-form {
+  flex: 1;
+}

@@ -1,4 +1,4 @@
-import { useState, forwardRef, useImperativeHandle } from "react";
+import { useEffect, useState, forwardRef, useImperativeHandle } from "react";
 import "./index.css";
 
 type AsideProps = {
@@ -26,22 +26,23 @@ export const Aside = forwardRef(({ onQueryChange }: AsideProps, ref) => {
           ? prev.filter((b) => b !== value)
           : [...prev, value];
 
-        const updatedQuery = getCombinedQuery(updatedBrands, checkedProducts);
-        onQueryChange(updatedQuery);
         return updatedBrands;
       });
     } else if (type === "product") {
       setCheckedProducts((prev) => {
         if (prev.includes(value)) {
-          onQueryChange("");
           return [];
         } else {
-          onQueryChange(getCombinedQuery(checkedBrands, [value]));
           return [value];
         }
       });
     }
   };
+
+  useEffect(() => {
+    const updatedQuery = getCombinedQuery(checkedBrands, checkedProducts);
+    onQueryChange(updatedQuery);
+  }, [checkedBrands, checkedProducts]);
 
   const getCombinedQuery = (brands: string[], products: string[]) => {
     const queries: string[] = [];

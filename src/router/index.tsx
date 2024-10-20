@@ -2,6 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import { MainPage } from "../pages/main";
 import { ProductPage } from "../pages/productPage";
 import { useParams } from "react-router-dom";
+import { LoginPage } from "../pages/login";
+import { EditProducts } from "../pages/editProducts";
 
 const ProductPageWrapper = () => {
   const { id, brand, model } = useParams();
@@ -21,6 +23,14 @@ const router = createBrowserRouter([
   {
     path: "/products/:id/:brand/:model",
     element: <ProductPageWrapper />,
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
+  },
+  {
+    path: "/edit",
+    element: <EditProducts />,
   },
 ]);
 

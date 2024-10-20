@@ -1,3 +1,4 @@
+import { formBrandType, formType } from "../pages/editProducts";
 import { UniqueProduct } from "../pages/productPage";
 
 export const fetchAllProducts = async () => {
@@ -18,6 +19,7 @@ export const fetchAllProducts = async () => {
 
 export const fetchFilteredProducts = async (query?: string) => {
   const url = `${import.meta.env.VITE_API_URL}/products/filter${query}`;
+  console.log(url);
   const response = await fetch(url, {
     method: "GET",
     headers: {
@@ -48,4 +50,140 @@ export const fetchProduct = async (product: UniqueProduct) => {
   }
 
   return response.json();
+};
+
+export const login = async ({
+  username,
+  password,
+}: {
+  username: string;
+  password: string;
+}) => {
+  const url = `${import.meta.env.VITE_API_URL}/login`;
+
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username,
+      password,
+    }),
+    credentials: "include",
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to login");
+  }
+
+  return response.json();
+};
+
+export const checkLogin = async () => {
+  const url = `${import.meta.env.VITE_API_URL}/checkToken`;
+  const response = await fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  });
+  const data = await response.json();
+  return { isLogged: response.ok, data };
+};
+
+export const removeProduct = async ({
+  id,
+  brand_id,
+  model,
+}: {
+  id: number;
+  brand_id: number;
+  model: string;
+}) => {
+  const url = `${import.meta.env.VITE_API_URL}/removeProduct`;
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({ id, brand_id, model }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to remove product");
+  }
+  const data = await response.json();
+  return { data };
+};
+
+export type ModifyProduct = {
+  id: number;
+  brand_id: number;
+  model: string;
+  img_url: string;
+  price: number;
+  description: string;
+};
+
+export const modifyProduct = async ({
+  originalProduct,
+  modifiedProduct,
+}: {
+  originalProduct: ModifyProduct;
+  modifiedProduct: ModifyProduct;
+}) => {
+  const url = `${import.meta.env.VITE_API_URL}/modifyProduct`;
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({ originalProduct, modifiedProduct }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to modify product");
+  }
+  const data = await response.json();
+  return { data };
+};
+
+export const createNewProduct = async (product: formType) => {
+  const url = `${import.meta.env.VITE_API_URL}/newProduct`;
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify(product),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to create new product");
+  }
+  const data = await response.json();
+  return { data };
+};
+
+export const createBrand = async (brand: formBrandType) => {
+  const url = `${import.meta.env.VITE_API_URL}/newBrand`;
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify(brand),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to create new brand");
+  }
+  const data = await response.json();
+  return { data };
 };
