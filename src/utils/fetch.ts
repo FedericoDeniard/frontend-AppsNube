@@ -1,3 +1,4 @@
+import { formBrandType, formType } from "../pages/editProducts";
 import { UniqueProduct } from "../pages/productPage";
 
 export const fetchAllProducts = async () => {
@@ -146,6 +147,42 @@ export const modifyProduct = async ({
 
   if (!response.ok) {
     throw new Error("Failed to modify product");
+  }
+  const data = await response.json();
+  return { data };
+};
+
+export const createNewProduct = async (product: formType) => {
+  const url = `${import.meta.env.VITE_API_URL}/newProduct`;
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify(product),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to create new product");
+  }
+  const data = await response.json();
+  return { data };
+};
+
+export const createBrand = async (brand: formBrandType) => {
+  const url = `${import.meta.env.VITE_API_URL}/newBrand`;
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify(brand),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to create new brand");
   }
   const data = await response.json();
   return { data };
