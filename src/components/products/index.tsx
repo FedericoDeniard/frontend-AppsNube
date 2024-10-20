@@ -124,16 +124,25 @@ export const ProductCardEditable = ({
       <div className="product-card__info">
         <h2 className="product-card__name">{`${name}`}</h2>
         {isEditing ? (
-          <input
-            placeholder="Descripción"
-            value={editedProduct.description}
-            onChange={(e) =>
-              setEditedProduct({
-                ...editedProduct,
-                description: e.target.value,
-              })
-            }
-          />
+          <>
+            <input
+              placeholder="img-url"
+              value={editedProduct.img_url}
+              onChange={(e) =>
+                setEditedProduct({ ...editedProduct, img_url: e.target.value })
+              }
+            />
+            <input
+              placeholder="Descripción"
+              value={editedProduct.description}
+              onChange={(e) =>
+                setEditedProduct({
+                  ...editedProduct,
+                  description: e.target.value,
+                })
+              }
+            />
+          </>
         ) : (
           <p className="product-card__description">{`${product.description}`}</p>
         )}
