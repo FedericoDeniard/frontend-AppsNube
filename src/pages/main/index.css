@@ -16,3 +16,13 @@
   gap: 10px;
   flex-wrap: wrap;
 }
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .product-container {
+    justify-content: center;
+  }
+}
