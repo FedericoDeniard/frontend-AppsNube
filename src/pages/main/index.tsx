@@ -9,7 +9,7 @@ import { fetchAllProducts, fetchFilteredProducts } from "../../utils/fetch";
 import { useQueryContext } from "../../utils/context";
 
 export const MainPage = () => {
-  const { combinedQuery, handleSearch, handleSearchFilters } =
+  const { combinedQuery, handleSearch, handleSearchFilters, setQuery } =
     useQueryContext();
   const [products, setProducts] = useState<Product[]>([]);
   const asideRef = useRef<any>(null);
@@ -18,6 +18,7 @@ export const MainPage = () => {
     if (asideRef.current) {
       asideRef.current.reset();
     }
+    setQuery({ searchQuery: "", filterQuery: "" });
   };
 
   useEffect(() => {

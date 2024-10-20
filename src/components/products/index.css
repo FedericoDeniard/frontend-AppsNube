@@ -83,9 +83,13 @@
 .product-card__brand {
   height: 18px;
   position: absolute;
+  display: flex;
+  align-items: center;
+  width: max-content;
+  text-wrap: nowrap;
   aspect-ratio: 1/1;
   left: 0;
-  bottom: 30px;
+  bottom: 10px;
 }
 
 .product-card__brand > img {
