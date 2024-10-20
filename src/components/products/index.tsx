@@ -122,7 +122,7 @@ export const ProductCardEditable = ({
         </figure>
       </div>
       <div className="product-card__info">
-        <h2 className="product-card__name">{`${name}`}</h2>
+        <h2 className="product-card__name">{`${product.name}`}</h2>
         {isEditing ? (
           <>
             <input

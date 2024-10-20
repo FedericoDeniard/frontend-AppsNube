@@ -15,7 +15,7 @@ export const Header = ({
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { setQuery, logged, checkLogged } = useQueryContext();
+  const { logged, checkLogged } = useQueryContext();
 
   useEffect(() => {
     checkLogged();
@@ -30,15 +30,21 @@ export const Header = ({
   };
 
   const resetSearchTerm = () => {
-    setSearchTerm("");
+    console.log("reset");
     onSearch("");
     navigate("/");
-    setQuery({ searchQuery: "", filterQuery: "" });
+    setSearchTerm("");
   };
 
   return (
-    <header className="header" onClick={resetFilters}>
-      <div className="logo-container" onClick={resetSearchTerm}>
+    <header className="header">
+      <div
+        className="logo-container"
+        onClick={() => {
+          resetSearchTerm();
+          resetFilters;
+        }}
+      >
         <img src="/logo.svg" alt="logo" className="logo" />
         <h1>Tienda Vite</h1>
       </div>
