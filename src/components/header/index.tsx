@@ -58,24 +58,26 @@ export const Header = ({
         />
         <button type="submit" className="search-button" />
       </form>
-      <button className="cart-button" />
-      {!logged ? (
-        <button
-          className="profile-button"
-          onClick={async () => {
-            await checkLogged();
-            navigate("/login");
-          }}
-        />
-      ) : (
-        <button
-          className="profile-button"
-          onClick={async () => {
-            await checkLogged();
-            navigate("/edit");
-          }}
-        />
-      )}
+      <div className="button-container">
+        {!logged ? (
+          <button
+            className="profile-button"
+            onClick={async () => {
+              await checkLogged();
+              navigate("/login");
+            }}
+          />
+        ) : (
+          <button
+            className="profile-button"
+            onClick={async () => {
+              await checkLogged();
+              navigate("/edit");
+            }}
+          />
+        )}
+        <button className="cart-button" />
+      </div>
     </header>
   );
 };
