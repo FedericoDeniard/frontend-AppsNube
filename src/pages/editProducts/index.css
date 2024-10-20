@@ -27,3 +27,9 @@
 .brand-form {
   flex: 1;
 }
+
+@media (max-width: 768px) {
+  .create {
+    flex-direction: column;
+  }
+}
