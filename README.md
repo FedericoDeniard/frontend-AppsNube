@@ -4,7 +4,7 @@ Para crear este proyecto utilicé React.Js junto a TypeScript
 
 ## Rutas
 
-La página cuenta con cuatro rutas
+La página cuenta con cuatro rutas (Creadas con **"React-Router-Dom"**)
 
 • **"/"**: Es la página principal, en esta se muestran todos los productos.  
 • **"/login"**: Inicio de sesión para administradores, cuenta con autenticación con JWT.  
