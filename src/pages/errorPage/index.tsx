@@ -4,7 +4,7 @@ export const ErrorPage = () => {
   const navigate = useNavigate();
   return (
     <div className="errorPage">
-      <h1>¡Oops, esta ruta no existe!</h1>
+      <h1>¡Oops, esta ruta no existe o no estas autorizado!</h1>
       <button className="product__button" onClick={() => navigate("/")}>
         Volver al inicio
       </button>
