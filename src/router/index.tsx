@@ -4,6 +4,7 @@ import { ProductPage } from "../pages/productPage";
 import { useParams } from "react-router-dom";
 import { LoginPage } from "../pages/login";
 import { EditProducts } from "../pages/editProducts";
+import { ErrorPage } from "../pages/errorPage";
 
 const ProductPageWrapper = () => {
   const { id, brand, model } = useParams();
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainPage />,
+    errorElement: <ErrorPage />,
   },
   {
     path: "/products/:id/:brand/:model",
