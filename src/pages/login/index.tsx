@@ -27,7 +27,7 @@ export const LoginPage = () => {
       username: data.username,
       password: data.password,
     });
-    navigate("/");
+    navigate(`/${import.meta.env.VITE_BASE_URL}`);
   };
 
   return (

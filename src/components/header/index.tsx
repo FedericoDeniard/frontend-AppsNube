@@ -24,7 +24,7 @@ export const Header = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (location.pathname !== "/") {
-      navigate("/");
+      navigate(`/${import.meta.env.VITE_BASE_URL}`);
     }
     onSearch(searchTerm);
   };
@@ -32,7 +32,7 @@ export const Header = ({
   const resetSearchTerm = () => {
     console.log("reset");
     onSearch("");
-    navigate("/");
+    navigate(`/${import.meta.env.VITE_BASE_URL}`);
     setSearchTerm("");
   };
 
@@ -64,7 +64,7 @@ export const Header = ({
             className="profile-button"
             onClick={async () => {
               await checkLogged();
-              navigate("/login");
+              navigate(`/${import.meta.env.VITE_BASE_URL}/login`);
             }}
           />
         ) : (
@@ -72,7 +72,7 @@ export const Header = ({
             className="profile-button"
             onClick={async () => {
               await checkLogged();
-              navigate("/edit");
+              navigate(`/${import.meta.env.VITE_BASE_URL}/edit`);
             }}
           />
         )}
