@@ -2,6 +2,9 @@
 
 Para crear este proyecto utilicé React.Js junto a TypeScript
 
+> [!WARNING]
+> El backend está deployado en render, por lo que es posible que la página en su primera carga tenga un tiempo de carga bastante grande, ya que render en su plan gratuito, apaga el servidor tras no ser solicitado en x tiempo.
+
 ## Rutas
 
 La página cuenta con cuatro rutas (Creadas con **"React-Router-Dom"**)
