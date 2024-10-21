@@ -6,9 +6,12 @@ Para crear este proyecto utilicé React.Js junto a TypeScript
 
 La página cuenta con cuatro rutas (Creadas con **"React-Router-Dom"**)
 
-• **"/"**: Es la página principal, en esta se muestran todos los productos.  
-• **"/login"**: Inicio de sesión para administradores, cuenta con autenticación con JWT.  
-• **"/edit"**: Si el usuario está autenticado puede editar y/o cargar o borrar productos.  
+• **"/"**: Es la página principal, en esta se muestran todos los productos.
+
+• **"/login"**: Inicio de sesión para administradores, cuenta con autenticación con JWT.
+
+• **"/edit"**: Si el usuario está autenticado puede editar y/o cargar o borrar productos.
+
 • **"/products/:id/:brand/:model"**: Esta página muestra un producto en específico.
 
 Cualquier otra ruta que no exista renderizará un elemento donde se podrá volver a la ruta por defecto **("/")**
@@ -41,11 +44,14 @@ Esta ruta hace una solicitud al backend, y en el caso de ser correcta, nos devue
 
 Esta es la vista administrador, la ruta es privada y solo podemos acceder si estamos logueados, esto se hace a traves del useContext.
 
-Si estamos autorizados veremos dos formularios, uno para crear un nuevo producto y otro para crear una marca, no podremos crear un producto de una marca que no existe.  
+Si estamos autorizados veremos dos formularios, uno para crear un nuevo producto y otro para crear una marca, no podremos crear un producto de una marca que no existe.
+
 Además, hay una vista de todos los productos, donde nuevamente podremos usar los filtros, pero a diferencia de la vista de la ruta **("/")**, en esta ruta nos aparecerá un lapiz con el cuál podremos editar los productos existentes, y también nos aparecerá una cruz para borrar productos.
 
 ## Como levantar el proyecto
 
 - Instalar dependencias: `npm install`
-- Archivo de configuración de entorno **.env**: Deberá contener una clave **VITE_API_URL** con el valor de la ruta base del backend, ej: "http://localhost:3000" (Este proyecto no contiene claves sensibles, por lo tanto el .env se encuentra público, en otro caso debería estar en el .gitignore)
-- Correr el proyecto: `npm run dev`
+
+- Archivo de configuración de entorno **.env**: Deberá contener una clave **VITE_API_URL** con el valor de la ruta base del backend, ej: "http://localhost:3000" (En el repositorio se encuentra este archivo ya configurado, pero si quisieran cambiar el puerto del backend podrían hacerlo modificando **VITE_API_URL**)
+
+- Correr el proyecto: `npm run dev`: Levantará el proyecto en modo dev, tomando los archivos .env.development que ya se encuentran en el repositorio.
