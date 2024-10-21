@@ -7,11 +7,12 @@ import "./index.css";
 import { Aside } from "../../components/aside";
 import { fetchAllProducts, fetchFilteredProducts } from "../../utils/fetch";
 import { useQueryContext } from "../../utils/context";
+import { Loader } from "../../components/loader";
 
 export const MainPage = () => {
   const { combinedQuery, handleSearch, handleSearchFilters, setQuery } =
     useQueryContext();
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<Product[] | null>(null);
   const asideRef = useRef<any>(null);
 
   const resetFilters = () => {
@@ -45,14 +46,16 @@ export const MainPage = () => {
       <div className="container">
         <Aside ref={asideRef} onQueryChange={handleSearchFilters} />
         <div className="product-container">
-          {products.length > 0
-            ? products.map((product) => (
-                <ProductCard
-                  key={`${product.id}${product.brand.id}${product.model}`}
-                  product={product}
-                />
-              ))
-            : "No hay productos"}
+          {products ? (
+            products.map((product) => (
+              <ProductCard
+                key={`${product.id}${product.brand.id}${product.model}`}
+                product={product}
+              />
+            ))
+          ) : (
+            <Loader />
+          )}
         </div>
       </div>
     </div>
