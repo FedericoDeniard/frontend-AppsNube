@@ -94,10 +94,6 @@ export const QueryProvider = ({ children }: { children: ReactNode }) => {
 
   const combinedQuery = getCombinedQuery(query.searchQuery, query.filterQuery);
 
-  useEffect(() => {
-    console.log(combinedQuery);
-  }, [combinedQuery]);
-
   return (
     <QueryContext.Provider
       value={{

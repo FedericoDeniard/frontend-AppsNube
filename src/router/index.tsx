@@ -24,15 +24,15 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: `/${import.meta.env.VITE_BASE_URL}/products/:id/:brand/:model`,
+    path: `/${import.meta.env.VITE_BASE_URL}products/:id/:brand/:model`,
     element: <ProductPageWrapper />,
   },
   {
-    path: `/${import.meta.env.VITE_BASE_URL}/login`,
+    path: `/${import.meta.env.VITE_BASE_URL}login`,
     element: <LoginPage />,
   },
   {
-    path: `/${import.meta.env.VITE_BASE_URL}/edit`,
+    path: `/${import.meta.env.VITE_BASE_URL}edit`,
     element: <PrivateRoute element={<EditProducts />} />,
   },
 ]);

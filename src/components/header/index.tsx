@@ -30,7 +30,6 @@ export const Header = ({
   };
 
   const resetSearchTerm = () => {
-    console.log("reset");
     onSearch("");
     navigate(`/${import.meta.env.VITE_BASE_URL}`);
     setSearchTerm("");
@@ -46,7 +45,7 @@ export const Header = ({
         }}
       >
         <img
-          src={`/${import.meta.env.VITE_BASE_URL}/logo.svg`}
+          src={`/${import.meta.env.VITE_BASE_URL}logo.svg`}
           alt="logo"
           className="logo"
         />
@@ -68,7 +67,7 @@ export const Header = ({
             className="profile-button"
             onClick={async () => {
               await checkLogged();
-              navigate(`/${import.meta.env.VITE_BASE_URL}/login`);
+              navigate(`/${import.meta.env.VITE_BASE_URL}login`);
             }}
           />
         ) : (
@@ -76,7 +75,7 @@ export const Header = ({
             className="profile-button"
             onClick={async () => {
               await checkLogged();
-              navigate(`/${import.meta.env.VITE_BASE_URL}/edit`);
+              navigate(`/${import.meta.env.VITE_BASE_URL}edit`);
             }}
           />
         )}
