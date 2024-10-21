@@ -3,6 +3,7 @@
 Para crear este proyecto utilicé React.Js junto a TypeScript
 
 > [!WARNING]
+
 > El backend está deployado en render, por lo que es posible que la página en su primera carga tenga un tiempo de carga bastante grande, ya que render en su plan gratuito, apaga el servidor tras no ser solicitado en x tiempo.
 
 ## Rutas
@@ -40,6 +41,9 @@ También existe un botón de comprar, el cuál todavía no está implementado, p
 ## Ruta ("/login")
 
 Esta ruta es un formulario, utilizo **"React-Hook-Form"** para el mismo. Actualmente la única validación que ofrece es no aceptar campos vacios, ya que por el momento, solo se puede hacer login, sin registro, ya que definí el usuario de administrador directamente en la base de datos.
+
+> [!NOTE]
+> Pueden acceder como administrador como usuario: **admin** contraseña: **default**
 
 Esta ruta hace una solicitud al backend, y en el caso de ser correcta, nos devuelve una cookie con un token para luego redirigirnos a la página principal **("/")**
 
