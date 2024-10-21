@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Product, ProductCard } from "../../components/products";
 import { fetchFilteredProducts, fetchProduct } from "../../utils/fetch";
 import { useQueryContext } from "../../utils/context";
+import { Loader } from "../../components/loader";
 
 export type UniqueProduct = {
   id: number;
@@ -34,29 +35,31 @@ export const ProductPage = ({ id, brand, model }: UniqueProduct) => {
   return (
     <div className="mainPage">
       <Header onSearch={handleSearch} />
-      <div className="product">
-        <figure className="product__image-container">
-          <img
-            className="product__image"
-            src={product?.img_url}
-            alt={`${product?.name} ${product?.brand.name} ${product?.model} ${product?.description}`}
-          />
-        </figure>
-        <div className="product__info">
-          <h1 className="product__name">
-            {`${product?.name} ${product?.brand.name}`}
+
+      {product ? (
+        <div className="product">
+          <figure className="product__image-container">
             <img
-              className="product__brand-logo"
-              src={product?.brand.logo_url}
+              className="product__image"
+              src={product?.img_url}
+              alt={`${product?.name} ${product?.brand.name} ${product?.model} ${product?.description}`}
             />
-          </h1>
-          <h2 className="product__model">{`Modelo: ${product?.model}`}</h2>
-          <h3 className="product__description">{`${product?.description} - $${product?.price}`}</h3>
-          <button className="product__button">Comprar</button>
-          <p>También te podría interesar</p>
-          <div className="one-product-container">
-            {brandProducts
-              ? brandProducts
+          </figure>
+          <div className="product__info">
+            <h1 className="product__name">
+              {`${product?.name} ${product?.brand.name}`}
+              <img
+                className="product__brand-logo"
+                src={product?.brand.logo_url}
+              />
+            </h1>
+            <h2 className="product__model">{`Modelo: ${product?.model}`}</h2>
+            <h3 className="product__description">{`${product?.description} - $${product?.price}`}</h3>
+            <button className="product__button">Comprar</button>
+            <p>También te podría interesar</p>
+            <div className="one-product-container">
+              {brandProducts ? (
+                brandProducts
                   .filter((otherProduct) => otherProduct.id !== id)
                   .map((product) => (
                     <ProductCard
@@ -64,10 +67,15 @@ export const ProductPage = ({ id, brand, model }: UniqueProduct) => {
                       product={product}
                     />
                   ))
-              : ""}
+              ) : (
+                <Loader />
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 };
