@@ -28,7 +28,11 @@ export const ProductCard = ({ product }: { product: Product }) => {
     <div
       className="product-card"
       onClick={() =>
-        navigate(`/products/${product.id}/${brand.name}/${product.model}`)
+        navigate(
+          `/${import.meta.env.VITE_BASE_URL}products/${product.id}/${
+            brand.name
+          }/${product.model}`
+        )
       }
     >
       <div className="product-card__image-container">

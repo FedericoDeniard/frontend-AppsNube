@@ -5,6 +5,7 @@ export const fetchAllProducts = async () => {
   const url = `${import.meta.env.VITE_API_URL}/products`;
   const response = await fetch(url, {
     method: "GET",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
@@ -19,9 +20,9 @@ export const fetchAllProducts = async () => {
 
 export const fetchFilteredProducts = async (query?: string) => {
   const url = `${import.meta.env.VITE_API_URL}/products/filter${query}`;
-  console.log(url);
   const response = await fetch(url, {
     method: "GET",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
@@ -40,6 +41,7 @@ export const fetchProduct = async (product: UniqueProduct) => {
   }/${product.model}`;
   const response = await fetch(url, {
     method: "GET",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
@@ -63,6 +65,7 @@ export const login = async ({
 
   const response = await fetch(url, {
     method: "POST",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
@@ -70,7 +73,6 @@ export const login = async ({
       username,
       password,
     }),
-    credentials: "include",
   });
 
   if (!response.ok) {
@@ -84,10 +86,10 @@ export const checkLogin = async () => {
   const url = `${import.meta.env.VITE_API_URL}/checkToken`;
   const response = await fetch(url, {
     method: "GET",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
-    credentials: "include",
   });
   const data = await response.json();
   return { isLogged: response.ok, data };
@@ -138,10 +140,10 @@ export const modifyProduct = async ({
   const url = `${import.meta.env.VITE_API_URL}/modifyProduct`;
   const response = await fetch(url, {
     method: "POST",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
-    credentials: "include",
     body: JSON.stringify({ originalProduct, modifiedProduct }),
   });
 

@@ -5,7 +5,10 @@ export const ErrorPage = () => {
   return (
     <div className="errorPage">
       <h1>¡Oops, esta ruta no existe o no estas autorizado!</h1>
-      <button className="product__button" onClick={() => navigate("/")}>
+      <button
+        className="product__button"
+        onClick={() => navigate(`/${import.meta.env.VITE_BASE_URL}`)}
+      >
         Volver al inicio
       </button>
     </div>

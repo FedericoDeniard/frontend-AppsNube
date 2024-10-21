@@ -24,15 +24,14 @@ export const Header = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (location.pathname !== "/") {
-      navigate("/");
+      navigate(`/${import.meta.env.VITE_BASE_URL}`);
     }
     onSearch(searchTerm);
   };
 
   const resetSearchTerm = () => {
-    console.log("reset");
     onSearch("");
-    navigate("/");
+    navigate(`/${import.meta.env.VITE_BASE_URL}`);
     setSearchTerm("");
   };
 
@@ -45,7 +44,11 @@ export const Header = ({
           resetFilters;
         }}
       >
-        <img src="/logo.svg" alt="logo" className="logo" />
+        <img
+          src={`/${import.meta.env.VITE_BASE_URL}logo.svg`}
+          alt="logo"
+          className="logo"
+        />
         <h1>Tienda Vite</h1>
       </div>
       <form className="search-form" onSubmit={handleSubmit}>
@@ -64,7 +67,7 @@ export const Header = ({
             className="profile-button"
             onClick={async () => {
               await checkLogged();
-              navigate("/login");
+              navigate(`/${import.meta.env.VITE_BASE_URL}login`);
             }}
           />
         ) : (
@@ -72,7 +75,7 @@ export const Header = ({
             className="profile-button"
             onClick={async () => {
               await checkLogged();
-              navigate("/edit");
+              navigate(`/${import.meta.env.VITE_BASE_URL}edit`);
             }}
           />
         )}

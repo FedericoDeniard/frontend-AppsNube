@@ -19,20 +19,20 @@ const ProductPageWrapper = () => {
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: `/${import.meta.env.VITE_BASE_URL}`,
     element: <MainPage />,
     errorElement: <ErrorPage />,
   },
   {
-    path: "/products/:id/:brand/:model",
+    path: `/${import.meta.env.VITE_BASE_URL}products/:id/:brand/:model`,
     element: <ProductPageWrapper />,
   },
   {
-    path: "/login",
+    path: `/${import.meta.env.VITE_BASE_URL}login`,
     element: <LoginPage />,
   },
   {
-    path: "/edit",
+    path: `/${import.meta.env.VITE_BASE_URL}edit`,
     element: <PrivateRoute element={<EditProducts />} />,
   },
 ]);
