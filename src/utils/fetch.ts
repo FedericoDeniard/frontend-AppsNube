@@ -106,7 +106,7 @@ export const removeProduct = async ({
 }) => {
   const url = `${import.meta.env.VITE_API_URL}/removeProduct`;
   const response = await fetch(url, {
-    method: "POST",
+    method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
